@@ -27,27 +27,19 @@ Use SVMs for linear and non-linear classification.
 I started by loading the `heart.csv` dataset which contains patient health data with features like age, cholesterol, blood pressure, and more. The target column indicates whether or not the person has heart disease (0 or 1).  
 After verifying there were no missing values, I separated the features and labels. Since SVMs are sensitive to the scale of input features, I standardized all the features using `StandardScaler`. I then split the data into training and testing sets in an 80/20 ratio.
 
----
-
 ### 2. Training SVM Models  
 To explore how different kernels perform, I trained two models using `SVC` from scikit-learn:  
 - One with a **linear kernel**, which tries to separate the classes using a straight hyperplane  
 - Another with an **RBF (Radial Basis Function) kernel**, which allows for non-linear decision boundaries  
 I trained both on the scaled training data and evaluated them on the test data using accuracy scores.
 
----
-
 ### 3. Visualizing Decision Boundaries  
 Since the dataset had 13 features, I used **PCA** to reduce the data to 2 dimensions for visualization. I retrained the RBF SVM on the 2D PCA data and plotted the decision boundary.  
 The plot helped me visualize how the model separates the two classes, especially in regions where the data points are tightly packed and overlapping. It was interesting to see how the RBF kernel curved the boundary to adapt to the complex structure of the data.
 
----
-
 ### 4. Hyperparameter Tuning  
 To get the best results, I used **GridSearchCV** to tune the `C` and `gamma` parameters for the RBF kernel. I tested different values across a grid and picked the combination that gave the highest cross-validation score.  
 This showed me how important proper tuning is — some combinations worked far better than others.
-
----
 
 ### 5. Cross-Validation  
 Finally, I used **5-fold cross-validation** to evaluate the overall performance of the best-tuned model. This helped me understand how the model performs on different subsets of the data, and whether it generalizes well beyond the train/test split.
